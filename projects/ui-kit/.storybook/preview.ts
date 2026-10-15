@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/angular-vite';
 
-// Import the design tokens here once src/styles/index.scss has content.
+import '../src/styles/index.scss';
+
 const preview: Preview = {
   parameters: {
     controls: {

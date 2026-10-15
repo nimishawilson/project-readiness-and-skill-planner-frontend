@@ -1,1 +1,15 @@
-// Design tokens (colors, spacing, radii, status colors) go here.
+// Design tokens. Only these variables may carry color values; components use var(--app-color-*).
+// CSS custom properties (not SCSS variables) so the shell and every remote share one runtime theme.
+// Text on accent/warning must use --app-color-ink (they are too light for white text).
+:root {
+  --app-color-surface: #f8fafc; // page and card background, text on dark
+  --app-color-ink: #0f172a; // nav bar, login panel, body text
+  --app-color-primary: #0f766e; // primary buttons, active states, "Expert"
+  --app-color-accent: #5eead4; // "Beginner"/"Intermediate", progress fills, highlights
+  --app-color-warning: #f97316; // awaiting approval, not ready, +N needed
+
+  --app-color-primary-hover: color-mix(in srgb, var(--app-color-primary) 85%, var(--app-color-ink));
+  --app-color-border: color-mix(in srgb, var(--app-color-ink) 12%, var(--app-color-surface));
+  --app-color-text-muted: color-mix(in srgb, var(--app-color-ink) 65%, var(--app-color-surface));
+  --app-color-on-primary: var(--app-color-surface);
+}
