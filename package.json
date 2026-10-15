@@ -9,7 +9,10 @@
     "test": "ng test",
     "start:all": "concurrently -n shell,employee-directory,skills-matrix,learning-goals,project-management \"ng serve shell\" \"ng serve employee-directory\" \"ng serve skills-matrix\" \"ng serve learning-goals\" \"ng serve project-management\"",
     "build:ui-kit": "ng build ui-kit",
-    "build:all": "ng build shell && ng build employee-directory && ng build skills-matrix && ng build learning-goals && ng build project-management"
+    "build:all": "ng build shell && ng build employee-directory && ng build skills-matrix && ng build learning-goals && ng build project-management",
+    "storybook": "ng run ui-kit:storybook",
+    "build-storybook": "ng run ui-kit:build-storybook",
+    "test:stories": "vitest run --root projects/ui-kit --config vitest.storybook.config.mts"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
@@ -26,14 +29,24 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.8.1",
+    "@angular/animations": "^22.2.3",
     "@angular/build": "^22.2.2",
     "@angular/cli": "^22.0.5",
     "@angular/compiler-cli": "^22.0.0",
     "@softarc/native-federation-orchestrator": "^4.6.0",
+    "@storybook/addon-a11y": "^10.6.2",
+    "@storybook/addon-docs": "^10.6.2",
+    "@storybook/addon-vitest": "^10.6.2",
+    "@storybook/angular-vite": "^10.6.2",
+    "@vitest/browser": "^5.0.4",
+    "@vitest/browser-playwright": "^5.0.4",
     "concurrently": "^10.0.6",
     "jsdom": "^30.0.0",
     "ng-packagr": "^22.2.0",
+    "playwright": "^1.64.1",
     "prettier": "^3.8.1",
+    "storybook": "^10.6.2",
     "typescript": "~6.0.2",
     "vitest": "^5.0.0"
   }

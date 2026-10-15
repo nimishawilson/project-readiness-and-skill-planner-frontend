@@ -519,10 +519,20 @@
           },
           "defaultConfiguration": "production"
         },
-        "test": {
-          "builder": "@angular/build:unit-test",
+        "storybook": {
+          "builder": "@storybook/angular-vite:start-storybook",
           "options": {
-            "tsConfig": "projects/ui-kit/tsconfig.spec.json"
+            "configDir": "projects/ui-kit/.storybook",
+            "tsConfig": "projects/ui-kit/.storybook/tsconfig.json",
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular-vite:build-storybook",
+          "options": {
+            "configDir": "projects/ui-kit/.storybook",
+            "tsConfig": "projects/ui-kit/.storybook/tsconfig.json",
+            "outputDir": "dist/storybook/ui-kit"
           }
         }
       }
