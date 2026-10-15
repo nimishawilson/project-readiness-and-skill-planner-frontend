@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:all": "concurrently -n shell,employee-directory,skills-matrix,learning-goals,project-management \"ng serve shell\" \"ng serve employee-directory\" \"ng serve skills-matrix\" \"ng serve learning-goals\" \"ng serve project-management\"",
+    "build:ui-kit": "ng build ui-kit",
     "build:all": "ng build shell && ng build employee-directory && ng build skills-matrix && ng build learning-goals && ng build project-management"
   },
   "private": true,
@@ -31,6 +32,7 @@
     "@softarc/native-federation-orchestrator": "^4.6.0",
     "concurrently": "^10.0.6",
     "jsdom": "^30.0.0",
+    "ng-packagr": "^22.2.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
     "vitest": "^5.0.0"
