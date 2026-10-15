@@ -26,6 +26,30 @@
     },
     {
       "path": "./projects/shell/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/employee-directory/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/employee-directory/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/skills-matrix/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/skills-matrix/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/learning-goals/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/learning-goals/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/project-management/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/project-management/tsconfig.spec.json"
     }
   ]
 }

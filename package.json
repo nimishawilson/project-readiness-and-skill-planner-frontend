@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start:all": "concurrently -n shell,employee-directory,skills-matrix,learning-goals,project-management \"ng serve shell\" \"ng serve employee-directory\" \"ng serve skills-matrix\" \"ng serve learning-goals\" \"ng serve project-management\"",
+    "build:all": "ng build shell && ng build employee-directory && ng build skills-matrix && ng build learning-goals && ng build project-management"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
@@ -18,18 +20,19 @@
     "@angular/forms": "^22.0.0",
     "@angular/platform-browser": "^22.0.0",
     "@angular/router": "^22.0.0",
+    "es-module-shims": "^2.8.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "es-module-shims": "^2.8.0"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular/build": "^22.2.2",
     "@angular/cli": "^22.0.5",
     "@angular/compiler-cli": "^22.0.0",
+    "@softarc/native-federation-orchestrator": "^4.6.0",
+    "concurrently": "^10.0.6",
     "jsdom": "^30.0.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
-    "vitest": "^5.0.0",
-    "@softarc/native-federation-orchestrator": "^4.6.0"
+    "vitest": "^5.0.0"
   }
 }

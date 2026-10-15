@@ -3,10 +3,10 @@
 Angular 22 micro-frontend workspace (Native Federation, esbuild). Backend and functional spec live in the sibling folder and `../spec.md`; API docs in `../API_ENDPOINTS.md`.
 
 ## State
-Only `projects/shell` (the dynamic host) exists, with empty placeholder folders and an empty `federation.manifest.json`. No features yet. Remotes (employee-directory, skills-matrix, learning-goals, project-management) are added as `projects/*`; see README.md for ports and steps.
+`projects/shell` (dynamic host) plus four remotes: `employee-directory` (4201), `skills-matrix` (4202), `learning-goals` (4203), `project-management` (4204). Each remote exposes `./routes` and currently renders a placeholder page; the shell registers them in `public/federation.manifest.json` and lazy-loads them in `app.routes.ts`. No real features, layout, or auth yet. See README.md.
 
 ## Commands
-`npm start` (shell on :4200), `npm run build`, `npm test`.
+`npm start` (shell only, :4200), `npm run start:all` (shell + remotes), `npm run build:all`, `npm test`.
 
 ## Conventions
 - Standalone components, SCSS, signals. Prefix `app`.

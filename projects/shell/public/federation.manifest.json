@@ -1,1 +1,6 @@
-{}
+{
+  "employee-directory": "http://localhost:4201/remoteEntry.json",
+  "skills-matrix": "http://localhost:4202/remoteEntry.json",
+  "learning-goals": "http://localhost:4203/remoteEntry.json",
+  "project-management": "http://localhost:4204/remoteEntry.json"
+}
