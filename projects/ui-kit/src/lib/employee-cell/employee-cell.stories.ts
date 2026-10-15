@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { expect, within } from 'storybook/test';
+import { CountBadge } from '../count-badge/count-badge';
 import { EmployeeCell } from './employee-cell';
 
 const meta: Meta<EmployeeCell> = {
@@ -31,14 +32,9 @@ export const WithTrailingContent: Story = {
     props: args,
     template: `
       <app-employee-cell [name]="name" [title]="title" [size]="size">
-        <!-- Placeholder for the count dot component -->
-        <span
-          aria-label="1 goal awaiting approval"
-          style="background: var(--app-color-warning); color: var(--app-color-ink);
-                 border-radius: 50%; width: 16px; height: 16px; font-size: 10px;
-                 display: inline-flex; align-items: center; justify-content: center"
-        >1</span>
+        <app-count-badge [count]="1" label="goal awaiting approval" />
       </app-employee-cell>`,
+    moduleMetadata: { imports: [CountBadge] },
   }),
 };
 
