@@ -1,0 +1,62 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+
+  // Slot content (e.g. a count dot) keeps its size; only the name shrinks.
+  ::ng-deep > :not(.name) {
+    flex: none;
+  }
+}
+
+.name,
+.job-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--app-color-ink);
+}
+
+.job-title {
+  color: var(--app-color-text-muted);
+}
+
+:host(.app-employee-cell--md) {
+  .name {
+    font-size: 13px;
+  }
+  .job-title {
+    font-size: 12px;
+  }
+}
+
+:host(.app-employee-cell--sm) {
+  gap: 8px;
+
+  .name {
+    font-size: 12px;
+  }
+  .job-title {
+    font-size: 11px;
+  }
+}
