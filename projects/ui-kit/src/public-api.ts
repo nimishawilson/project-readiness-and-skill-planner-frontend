@@ -1,2 +1,2 @@
 // Public API of @app/ui-kit. Export components here as they are added.
-export {};
+export * from './lib/avatar/avatar';

@@ -1,0 +1,39 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border-radius: 50%;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+}
+
+:host(.app-avatar--sm) {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+}
+
+:host(.app-avatar--md) {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+:host(.app-avatar--lg) {
+  width: 48px;
+  height: 48px;
+  font-size: 18px;
+}
+
+:host(.app-avatar--soft) {
+  background: color-mix(in srgb, var(--app-color-accent) 30%, var(--app-color-surface));
+  color: var(--app-color-primary);
+}
+
+:host(.app-avatar--solid) {
+  background: var(--app-color-accent);
+  color: var(--app-color-ink);
+}

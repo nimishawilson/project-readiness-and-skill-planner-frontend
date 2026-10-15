@@ -11,6 +11,13 @@ export default defineConfig({
   test: {
     projects: [
       {
+        test: {
+          name: 'unit',
+          environment: 'node',
+          include: ['src/**/*.spec.ts'],
+        },
+      },
+      {
         plugins: [storybookAngularVitest({ zoneless: true }), storybookTest({ configDir })],
         test: {
           name: 'storybook',
