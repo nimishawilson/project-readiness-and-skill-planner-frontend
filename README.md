@@ -15,6 +15,20 @@ npm test           # unit tests
 
 The backend API is expected at `http://localhost:3000/api` (`projects/shell/src/environments/environment.ts`).
 
+## UI kit and Storybook
+
+Shared components live in `projects/ui-kit` (import from `@app/ui-kit`). Each component has a `*.stories.ts` file next to it, and Storybook is how you view and test them.
+
+```bash
+npm run build:ui-kit       # build the library alone
+npm run storybook          # view components at http://localhost:6006
+npm run build-storybook    # static Storybook build
+npx playwright install chromium   # one-time, needed before test:stories
+npm run test:stories       # run stories as browser tests (includes accessibility checks)
+```
+
+`npm test` does not cover the ui-kit; `npm run test:stories` does.
+
 ## Layout
 
 ```

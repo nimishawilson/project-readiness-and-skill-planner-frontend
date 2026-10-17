@@ -1,0 +1,60 @@
+:host {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--app-color-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--app-color-ink);
+}
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 8px;
+  border: 1.5px solid transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.value {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--app-color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host(.app-stat-card--warning) .dot {
+  background: var(--app-color-warning);
+}
+
+:host(.app-stat-card--accent) .dot {
+  background: var(--app-color-accent);
+}
+
+:host(.app-stat-card--primary) .dot {
+  background: var(--app-color-primary);
+}
+
+// hollow ring
+:host(.app-stat-card--neutral) .dot {
+  border-color: var(--app-color-text-muted);
+}
