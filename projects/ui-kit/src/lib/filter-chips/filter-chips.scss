@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--app-color-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--app-color-ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--app-color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+    outline-offset: 2px;
+  }
+
+  &[aria-checked='true'] {
+    border-color: var(--app-color-primary);
+    background: var(--app-color-primary);
+    color: var(--app-color-on-primary);
+  }
+}
+
+.count {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}
