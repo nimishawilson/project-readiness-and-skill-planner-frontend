@@ -1,0 +1,77 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--app-color-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--app-color-text-muted);
+  box-sizing: border-box;
+
+  &:focus-within {
+    border-color: var(--app-color-primary);
+    outline: 2px solid var(--app-color-accent);
+    outline-offset: 1px;
+  }
+}
+
+.icon {
+  flex: none;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  color: var(--app-color-ink);
+  outline: none;
+  appearance: none;
+
+  &::placeholder {
+    color: var(--app-color-text-muted);
+    opacity: 1;
+  }
+
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.clear {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--app-color-text-muted);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--app-color-ink);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+  }
+}
