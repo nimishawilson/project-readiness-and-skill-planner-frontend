@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  padding: 12px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--app-color-ink) 3%, var(--app-color-surface));
+}
+
+form {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr) 88px auto;
+  align-items: start;
+  gap: 12px;
+
+  button {
+    align-self: start;
+    margin-top: 23px;
+  }
+}
+
+@media (max-width: 720px) {
+  form {
+    grid-template-columns: 1fr 1fr;
+
+    button {
+      grid-column: 1 / -1;
+      justify-self: start;
+      margin-top: 0;
+    }
+  }
+}

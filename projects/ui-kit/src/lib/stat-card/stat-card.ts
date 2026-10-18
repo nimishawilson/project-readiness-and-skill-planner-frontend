@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-export type StatCardVariant = 'warning' | 'accent' | 'neutral' | 'primary';
+export type StatCardVariant = 'warning' | 'accent' | 'neutral' | 'primary' | 'ink' | 'attention';
 
 /**
  * Summary tile: a coloured dot, a large number and a label (e.g. "3 Awaiting approval").
@@ -24,6 +24,9 @@ export class StatCard {
   readonly value = input.required<number | string>();
   /** What is counted, e.g. "Awaiting approval". */
   readonly label = input.required<string>();
-  /** Dot colour: `warning` (needs attention), `accent` (in progress), `neutral` (not started, hollow) or `primary` (done). */
+  /**
+   * Dot colour: `warning` (needs attention), `accent` (in progress), `neutral` (not started, hollow),
+   * `primary` (done), `ink` (a plain total) or `attention` (hollow warning ring, e.g. people still needed).
+   */
   readonly variant = input<StatCardVariant>('neutral');
 }

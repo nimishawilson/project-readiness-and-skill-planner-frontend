@@ -1,0 +1,71 @@
+<header>
+  <div class="top">
+    <div class="title">
+      <h2>{{ view().project.name }}</h2>
+      <app-badge variant="neutral">{{ year() }}</app-badge>
+      @if (ready()) {
+        <app-badge variant="success">Ready to start</app-badge>
+      } @else {
+        <app-badge variant="warning">Not ready to start</app-badge>
+      }
+    </div>
+    <button app-button variant="outline" type="button" [disabled]="!canMap()" (click)="mapYear.emit()">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+        <path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      Map to another year
+    </button>
+  </div>
+  @if (view().project.description) {
+    <p class="description">{{ view().project.description }}</p>
+  }
+  @if (view().year.carriedFromYear) {
+    <p class="carried">
+      <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      Carried forward from {{ view().project.name }} {{ view().year.carriedFromYear }}
+    </p>
+  }
+</header>
+
+<div class="readiness">
+  @if (ready()) {
+    <app-callout variant="success">
+      <svg icon width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+        <path d="m8 12 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <strong>Ready to start</strong><br />
+      @if (hasRequirements()) {
+        Every skill requirement has enough qualified people assigned.
+      } @else {
+        No skill requirements yet. Add some to track readiness.
+      }
+    </app-callout>
+  } @else {
+    <app-callout variant="warning">
+      <svg icon width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+        <path d="M12 8v5M12 16.5v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <strong>Not ready to start</strong><br />
+      {{ needMessage() }}
+    </app-callout>
+  }
+</div>
+
+<app-requirements-table
+  [rows]="view().readiness.rows"
+  [skills]="skills()"
+  [editable]="requirementsEditable()"
+  (add)="addRequirement.emit($event)"
+  (levelChange)="levelChange.emit($event)"
+  (peopleChange)="peopleChange.emit($event)"
+  (remove)="removeRequirement.emit($event)"
+/>
+
+<app-assigned-employees [items]="assigned()" [editable]="assignmentsEditable()" (unassign)="unassign.emit($event)" />
+
+@if (requirementsEditable()) {
+  <app-assign-candidates [items]="candidates()" [year]="year()" [editable]="assignmentsEditable()" (assign)="assign.emit($event)" />
+}

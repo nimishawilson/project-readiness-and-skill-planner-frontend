@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 /**
  * A tinted notice panel. `info` is neutral (limits, read-only notes); `warning` draws attention
- * (items waiting on the user). Put an icon in the `[icon]` slot and the message as content.
+ * (items waiting on the user); `success` confirms a good state (e.g. ready to start). Put an icon in the `[icon]` slot and the message as content.
  */
 @Component({
   selector: 'app-callout',
@@ -15,5 +15,5 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   host: { '[class]': '"app-callout--" + variant()' },
 })
 export class Callout {
-  readonly variant = input<'info' | 'warning'>('info');
+  readonly variant = input<'info' | 'warning' | 'success'>('info');
 }

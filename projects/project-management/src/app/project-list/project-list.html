@@ -1,0 +1,35 @@
+<div class="filters">
+  <app-search-input label="Search projects" placeholder="Search projects" [(value)]="query" />
+  <app-filter-chips label="Filter projects" [options]="filters" [(value)]="filter" />
+</div>
+
+<div class="rows">
+  @for (row of rows(); track row.project.id) {
+    <app-list-item [template]="template" [selected]="row.project.id === selectedId()" (activate)="selected.emit(row.project.id)">
+      <div class="row">
+        <strong class="name">{{ row.project.name }}</strong>
+        @if (row.readiness.status === 'READY') {
+          <app-badge variant="success">Ready to start</app-badge>
+        } @else {
+          <app-badge variant="warning">Not ready to start</app-badge>
+        }
+        <span class="meta">
+          <app-badge variant="neutral">{{ row.year.year }}</app-badge>
+          <span>{{ people(row.assignees.length) }}</span>
+          <span>{{ skills(row.year.requirements.length) }}</span>
+        </span>
+        @if (row.readiness.totalNeeded > 0) {
+          <span class="needed">+{{ row.readiness.totalNeeded }} qualified needed</span>
+        }
+      </div>
+    </app-list-item>
+  } @empty {
+    <p class="none">
+      @if (filtered()) {
+        No projects match your search.
+      } @else {
+        No projects mapped to {{ year() }} yet.
+      }
+    </p>
+  }
+</div>

@@ -19,6 +19,11 @@
   background: color-mix(in srgb, var(--app-color-warning) 8%, var(--app-color-surface));
 }
 
+:host(.app-callout--success) {
+  border-color: color-mix(in srgb, var(--app-color-accent) 70%, var(--app-color-surface));
+  background: color-mix(in srgb, var(--app-color-accent) 18%, var(--app-color-surface));
+}
+
 .icon:empty {
   display: none;
 }

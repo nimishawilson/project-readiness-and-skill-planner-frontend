@@ -50,6 +50,10 @@
   background: var(--app-color-accent);
 }
 
+:host(.app-stat-card--ink) .dot {
+  background: var(--app-color-ink);
+}
+
 :host(.app-stat-card--primary) .dot {
   background: var(--app-color-primary);
 }
@@ -57,4 +61,17 @@
 // hollow ring
 :host(.app-stat-card--neutral) .dot {
   border-color: var(--app-color-text-muted);
+}
+
+:host(.app-stat-card--ink) .dot {
+  background: var(--app-color-ink);
+}
+
+// hollow warning ring
+:host(.app-stat-card--attention) .dot {
+  border-color: var(--app-color-warning);
+}
+
+:host(.app-stat-card--attention) .dot {
+  border-color: var(--app-color-warning);
 }

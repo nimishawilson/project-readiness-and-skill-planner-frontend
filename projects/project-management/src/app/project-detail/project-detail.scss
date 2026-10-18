@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+header {
+  padding: 20px;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+}
+
+.description {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--app-color-text-muted);
+}
+
+.carried {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--app-color-text-muted);
+}
+
+.readiness {
+  padding: 0 20px 20px;
+}

@@ -1,0 +1,29 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--app-color-ink);
+}
+
+.slots {
+  display: inline-flex;
+  gap: 3px;
+
+  span {
+    width: 12px;
+    height: 12px;
+    box-sizing: border-box;
+    border: 1.5px dashed var(--app-color-warning);
+    border-radius: 3px;
+
+    &.on {
+      border: 0;
+      background: var(--app-color-primary);
+    }
+  }
+}
+
+.text {
+  font-variant-numeric: tabular-nums;
+}

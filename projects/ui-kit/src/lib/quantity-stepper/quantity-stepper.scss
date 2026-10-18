@@ -1,0 +1,45 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  border: 1px solid var(--app-color-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--app-color-ink);
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--app-color-accent) 20%, #fff);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+    outline-offset: -2px;
+  }
+
+  &:disabled {
+    color: var(--app-color-text-muted);
+    cursor: default;
+  }
+}
+
+output {
+  min-width: 28px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

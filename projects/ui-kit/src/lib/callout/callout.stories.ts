@@ -22,3 +22,4 @@ type Story = StoryObj<Callout>;
 
 export const Info: Story = { args: { variant: 'info' } };
 export const Warning: Story = { args: { variant: 'warning' } };
+export const Success: Story = { args: { variant: 'success' } };

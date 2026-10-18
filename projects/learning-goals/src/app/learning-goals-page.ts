@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { FormField, MasterDetail, PageHeader, StatCard, type GoalProgress } from '@app/ui-kit';
+import { MasterDetail, PageHeader, StatCard, YearSelect, type GoalProgress } from '@app/ui-kit';
 import { ApprovalBanner, type PendingItem } from './approval-banner/approval-banner';
 import type { NewGoal } from './assign-goal-form/assign-goal-form';
 import { CURRENT_YEAR, GOALS, TEAM } from './learning-goals.mock';
@@ -18,7 +18,7 @@ import { TeamList, type TeamRow } from './team-list/team-list';
 /** Manager view of the team's learning goals. State is local (no API yet). */
 @Component({
   selector: 'app-learning-goals-page',
-  imports: [ApprovalBanner, FormField, MasterDetail, MemberGoals, PageHeader, StatCard, TeamList],
+  imports: [ApprovalBanner, MasterDetail, MemberGoals, PageHeader, StatCard, TeamList, YearSelect],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './learning-goals-page.html',
   styleUrl: './learning-goals-page.scss',
@@ -68,10 +68,6 @@ export class LearningGoalsPage {
     const id = this.selectedId();
     return id === undefined ? [] : goalsFor(this.goals(), id, this.year());
   });
-
-  protected setYear(value: string): void {
-    this.year.set(Number(value));
-  }
 
   protected approve(goalId: number): void {
     this.update(goalId, (g) => (isAwaiting(g) ? { ...g, approvalStatus: 'APPROVED' } : g));

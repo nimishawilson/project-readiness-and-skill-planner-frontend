@@ -1,0 +1,30 @@
+<app-detail-section heading="Assign from my team">
+  @if (editable()) {
+    <p class="hint">People can work on more than one project. Highlighted people would close a gap.</p>
+    <ul>
+      @for (item of items(); track item.member.id) {
+        <li [class.gap]="item.covers.length > 0">
+          <app-avatar [name]="item.member.name" size="md" />
+          <div class="who">
+            <strong>{{ item.member.name }}</strong>
+            <span class="others">{{ others(item.otherProjects) }}</span>
+          </div>
+          <button app-button variant="outline" size="sm" type="button" [attr.aria-label]="'Assign ' + item.member.name" (click)="assign.emit(item.member.id)">Assign</button>
+          @if (item.covers.length > 0) {
+            <span class="covers">Would cover: {{ item.covers.join(', ') }}</span>
+          }
+        </li>
+      } @empty {
+        <li class="empty">Everyone on your team is already assigned.</li>
+      }
+    </ul>
+  } @else {
+    <app-callout>
+      <svg icon width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+        <path d="M12 8v5M12 16.5v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      Assigning people opens when {{ year() }} starts. Requirements can be planned until then.
+    </app-callout>
+  }
+</app-detail-section>

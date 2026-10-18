@@ -1,0 +1,89 @@
+<app-detail-section heading="Skill requirements">
+  <span meta>{{ met() }} of {{ rows().length }} met</span>
+
+  @if (rows().length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Skill</th>
+          <th scope="col">Minimum level</th>
+          <th scope="col">People needed</th>
+          <th scope="col">Qualified assigned</th>
+          <th scope="col">Still needed</th>
+          @if (editable()) {
+            <th scope="col"><span class="visually-hidden">Actions</span></th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of rows(); track row.requirement.id) {
+          <tr>
+            <th scope="row">{{ skillName(row.requirement.skillId) }}</th>
+            <td>
+              @if (editable()) {
+                @for (key of [resetKey()]; track key) {
+                  <app-proficiency-select
+                    appearance="cell"
+                    [includeNotAssessed]="false"
+                    [label]="skillName(row.requirement.skillId) + ' minimum level'"
+                    [value]="row.requirement.minLevel"
+                    (valueChange)="changeLevel(row, $event)"
+                  />
+                }
+              } @else {
+                {{ levelLabel(row.requirement.minLevel) }}+
+              }
+            </td>
+            <td>
+              @if (editable()) {
+                <app-quantity-stepper
+                  [label]="skillName(row.requirement.skillId) + ' people needed'"
+                  [max]="peopleMax"
+                  [value]="row.requirement.peopleRequired"
+                  (valueChange)="peopleChange.emit({ requirementId: row.requirement.id, peopleRequired: $event })"
+                />
+              } @else {
+                {{ row.requirement.peopleRequired }}
+              }
+            </td>
+            <td><app-headcount-meter [filled]="row.qualifiedAssigned" [required]="row.requirement.peopleRequired" /></td>
+            <td>
+              @if (row.additionalNeeded > 0) {
+                <app-badge variant="warning" emphasis="solid">+{{ row.additionalNeeded }} needed</app-badge>
+              } @else {
+                <app-badge variant="neutral">Covered</app-badge>
+              }
+            </td>
+            @if (editable()) {
+              <td>
+                <button
+                  app-button
+                  variant="ghost"
+                  size="sm"
+                  [iconOnly]="true"
+                  type="button"
+                  [attr.aria-label]="'Remove ' + skillName(row.requirement.skillId) + ' requirement'"
+                  (click)="remove.emit(row.requirement.id)"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p class="none">No skill requirements yet.@if (editable()) { Add one below to track readiness. }</p>
+  }
+
+  @if (conflict()) {
+    <p class="conflict" role="alert">{{ conflict() }}</p>
+  }
+
+  @if (editable()) {
+    <app-requirement-adder [skills]="skills()" [existing]="requirements()" (add)="add.emit($event)" />
+  }
+</app-detail-section>

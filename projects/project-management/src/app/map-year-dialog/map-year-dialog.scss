@@ -1,0 +1,11 @@
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 12px 12px 12px 28px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--app-color-ink) 3%, var(--app-color-surface));
+  font-size: 13px;
+}

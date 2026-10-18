@@ -1,0 +1,29 @@
+<app-dialog heading="Map project to another year" [(open)]="open">
+  @if (project(); as project) {
+    @if (target() !== undefined && source(); as source) {
+      <p>
+        Adds {{ target() }} to <strong>{{ project.name }}</strong>, carrying its latest requirements and assignments
+        forward. The {{ source.year }} data stays as it is.
+      </p>
+      <app-year-select label="Target year" [years]="years()" [value]="target()!" (valueChange)="pick($event)" />
+      <ul>
+        <li>{{ requirementsText(source.requirements.length) }}</li>
+        <li>{{ peopleText(source.assignedIds.length) }}</li>
+      </ul>
+    } @else {
+      <app-callout>
+        <svg icon width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+          <path d="M12 8v5M12 16.5v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        No later year is available for this project.
+      </app-callout>
+    }
+  }
+  <div actions>
+    <button app-button variant="ghost" type="button" (click)="open.set(false)">Cancel</button>
+    <button app-button type="button" [disabled]="target() === undefined" (click)="confirm()">
+      Map to {{ target() ?? 'year' }}
+    </button>
+  </div>
+</app-dialog>

@@ -1,11 +1,5 @@
 <app-page-header heading="Learning goals" subtitle="Assign up to 3 goals per person each year, track progress, and approve completed goals.">
-  <app-form-field actions label="Goal year">
-    <select [value]="year()" (change)="setYear($any($event.target).value)">
-      @for (option of years; track option) {
-        <option [value]="option" [selected]="option === year()">{{ option }}</option>
-      }
-    </select>
-  </app-form-field>
+  <app-year-select actions label="Goal year" [years]="years" [(value)]="year" />
 </app-page-header>
 
 <div class="stats">

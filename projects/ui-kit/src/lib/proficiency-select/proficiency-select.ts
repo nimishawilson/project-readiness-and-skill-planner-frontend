@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { PROFICIENCY_OPTIONS, ProficiencyValue } from './proficiency.utils';
 
 export type ProficiencySelectAppearance = 'default' | 'cell';
@@ -18,7 +18,7 @@ export type ProficiencySelectAppearance = 'default' | 'cell';
       [disabled]="disabled()"
       (change)="onChange($event)"
     >
-      @for (option of options; track option.value) {
+      @for (option of options(); track option.value) {
         <option [value]="option.value" [selected]="option.value === value()">{{ option.label }}</option>
       }
     </select>
@@ -38,7 +38,12 @@ export class ProficiencySelect {
   /** Outlines the control in the warning color (a cell about to be changed by a bulk update). */
   readonly highlighted = input(false);
 
-  protected readonly options = PROFICIENCY_OPTIONS;
+  /** Offer "Not assessed". Turn off for pickers that need a real level, e.g. a requirement's minimum. */
+  readonly includeNotAssessed = input(true);
+
+  protected readonly options = computed(() =>
+    this.includeNotAssessed() ? PROFICIENCY_OPTIONS : PROFICIENCY_OPTIONS.filter((o) => o.value !== 'NOT_ASSESSED'),
+  );
 
   protected onChange(event: Event): void {
     this.value.set((event.target as HTMLSelectElement).value as ProficiencyValue);

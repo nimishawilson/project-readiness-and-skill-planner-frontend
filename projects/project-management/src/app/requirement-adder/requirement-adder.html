@@ -1,0 +1,20 @@
+<form (submit)="$event.preventDefault(); submit()">
+  <app-form-field label="Skill" [error]="error()">
+    <select (change)="pickSkill($any($event.target).value)">
+      @for (skill of skills(); track skill.id) {
+        <option [value]="skill.id" [selected]="skill.id === skillId()">{{ skill.name }}</option>
+      }
+    </select>
+  </app-form-field>
+  <app-form-field label="Minimum level">
+    <select (change)="level.set($any($event.target).value)">
+      @for (option of levels; track option.value) {
+        <option [value]="option.value" [selected]="option.value === level()">{{ option.label }}</option>
+      }
+    </select>
+  </app-form-field>
+  <app-form-field label="People" [error]="peopleError()">
+    <input type="number" min="1" [max]="peopleMax" step="1" [value]="people()" (input)="people.set($any($event.target).value)" />
+  </app-form-field>
+  <button app-button type="submit" variant="outline" [disabled]="!canAdd()">+ {{ buttonLabel() }}</button>
+</form>

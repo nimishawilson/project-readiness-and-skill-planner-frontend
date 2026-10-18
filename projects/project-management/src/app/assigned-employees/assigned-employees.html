@@ -1,0 +1,28 @@
+<app-detail-section heading="Assigned employees">
+  <span meta>{{ items().length }} assigned</span>
+  <ul>
+    @for (item of items(); track item.member.id) {
+      <li>
+        <app-avatar [name]="item.member.name" size="md" />
+        <div class="who">
+          <span class="name"><strong>{{ item.member.name }}</strong> · {{ item.member.title }}</span>
+          @if (item.skills.length > 0) {
+            <span class="chips">
+              @for (skill of item.skills; track skill.name) {
+                <app-skill-chip [skill]="skill.name" [level]="skill.level" [met]="true" />
+              }
+            </span>
+          } @else {
+            <span class="none">Doesn't meet any requirement yet</span>
+          }
+        </div>
+        <span class="others">{{ others(item.otherProjects) }}</span>
+        @if (editable()) {
+          <button app-button variant="ghost" size="sm" type="button" [attr.aria-label]="'Unassign ' + item.member.name" (click)="unassign.emit(item.member.id)">Unassign</button>
+        }
+      </li>
+    } @empty {
+      <li class="empty">No one is assigned yet.</li>
+    }
+  </ul>
+</app-detail-section>

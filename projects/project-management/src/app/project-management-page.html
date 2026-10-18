@@ -1,0 +1,55 @@
+<app-page-header heading="Projects" subtitle="Define skill requirements, staff projects from your team, and see what's still missing before a project can start.">
+  <app-year-select actions label="Year" [years]="years()" [(value)]="year" />
+  <button actions app-button type="button" (click)="creating.set(true)">+ New project</button>
+</app-page-header>
+
+<div class="stats">
+  <app-stat-card [value]="stats().projects" label="Projects" variant="ink" />
+  <app-stat-card [value]="stats().ready" label="Ready to start" variant="primary" />
+  <app-stat-card [value]="stats().notReady" label="Not ready to start" variant="warning" />
+  <app-stat-card [value]="stats().needed" label="Qualified people still needed" variant="attention" />
+</div>
+
+<app-master-detail masterWidth="360px">
+  <app-project-list
+    master
+    [rows]="rows()"
+    [selectedId]="selected()?.project?.id"
+    [year]="year()"
+    [filtered]="isFiltered()"
+    [(query)]="query"
+    [(filter)]="filter"
+    (selected)="select($event)"
+  />
+  <div detail>
+    @if (creating()) {
+      <app-project-form [skills]="skills" [team]="team" [currentYear]="currentYear" (create)="createProject($event)" (cancel)="creating.set(false)" />
+    } @else if (selected(); as view) {
+      <app-project-detail
+        [view]="view"
+        [projects]="projects()"
+        [skills]="skills"
+        [team]="team"
+        [year]="year()"
+        [requirementsEditable]="requirementsEditable()"
+        [assignmentsEditable]="assignmentsEditable()"
+        [canMap]="canMap()"
+        (mapYear)="mapOpen.set(true)"
+        (addRequirement)="addRequirement($event)"
+        (levelChange)="changeLevel($event)"
+        (peopleChange)="changePeople($event)"
+        (removeRequirement)="removeRequirement($event)"
+        (assign)="assign($event)"
+        (unassign)="unassign($event)"
+      />
+    } @else {
+      <app-empty-state
+        [heading]="stats().projects === 0 ? 'No projects in ' + year() : 'Select a project'"
+        [message]="stats().projects === 0 ? 'Create a project, or map one from another year.' : 'Pick a project to see its requirements and team.'"
+        [skeleton]="true"
+      />
+    }
+  </div>
+</app-master-detail>
+
+<app-map-year-dialog [(open)]="mapOpen" [project]="selected()?.project" [currentYear]="currentYear" (mapYear)="mapYear($event)" />
