@@ -1,0 +1,40 @@
+:host {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  font-size: 12px;
+  color: var(--app-color-text-muted);
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.tone-empty {
+  border: 1px dashed var(--app-color-text-muted);
+}
+
+.tone-soft {
+  border-color: var(--app-color-accent);
+  background: color-mix(in srgb, var(--app-color-accent) 30%, white);
+}
+
+.tone-medium {
+  border-color: var(--app-color-accent);
+  background: var(--app-color-accent);
+}
+
+.tone-strong {
+  border-color: var(--app-color-primary);
+  background: var(--app-color-primary);
+}

@@ -1,0 +1,59 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--app-color-border);
+  border-radius: 12px;
+  background: white;
+
+  &.active {
+    border-color: var(--app-color-accent);
+    background: color-mix(in srgb, var(--app-color-accent) 12%, white);
+  }
+}
+
+.count {
+  display: grid;
+  flex: none;
+  place-items: center;
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--app-color-border);
+  color: var(--app-color-text-muted);
+  font-weight: 600;
+}
+
+:host(.active) .count {
+  background: var(--app-color-primary);
+  color: var(--app-color-on-primary);
+}
+
+.summary {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+  align-self: center;
+  gap: 2px;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--app-color-text-muted);
+
+  strong {
+    font-size: 15px;
+    color: var(--app-color-ink);
+  }
+}
+
+app-form-field {
+  min-width: 160px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

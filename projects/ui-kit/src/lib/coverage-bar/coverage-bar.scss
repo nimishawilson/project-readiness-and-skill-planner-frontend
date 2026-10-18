@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bar {
+  display: flex;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--app-color-border);
+
+  span {
+    flex-basis: 0;
+    flex-shrink: 0;
+    min-width: 0;
+  }
+}
+
+.expert {
+  background: var(--app-color-primary);
+}
+
+.intermediate {
+  background: var(--app-color-accent);
+}
+
+.beginner {
+  background: color-mix(in srgb, var(--app-color-accent) 40%, white);
+}
+
+.rest {
+  background: transparent;
+}
+
+.caption {
+  font-size: 11px;
+  color: var(--app-color-text-muted);
+  white-space: nowrap;
+}

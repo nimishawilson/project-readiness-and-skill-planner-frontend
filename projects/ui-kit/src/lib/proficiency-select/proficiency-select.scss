@@ -23,3 +23,68 @@ select {
     color: var(--app-color-text-muted);
   }
 }
+
+// Cell appearance: level-colored control for dense grids, with a CSS chevron so it stays
+// legible on every background.
+:host(.app-proficiency-select--cell) {
+  position: relative;
+  display: block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  select {
+    appearance: none;
+    height: 36px;
+    padding: 0 28px 0 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  option {
+    background: white;
+    color: var(--app-color-ink);
+  }
+
+  select[data-level='NOT_ASSESSED'] {
+    border: 1px dashed var(--app-color-text-muted);
+    background: transparent;
+    color: var(--app-color-text-muted);
+  }
+
+  select[data-level='BEGINNER'] {
+    border-color: var(--app-color-accent);
+    background: color-mix(in srgb, var(--app-color-accent) 30%, white);
+    color: var(--app-color-ink);
+  }
+
+  select[data-level='INTERMEDIATE'] {
+    border-color: var(--app-color-accent);
+    background: var(--app-color-accent);
+    color: var(--app-color-ink);
+  }
+
+  select[data-level='EXPERT'] {
+    border-color: var(--app-color-primary);
+    background: var(--app-color-primary);
+    color: var(--app-color-on-primary);
+  }
+}
+
+:host(.app-proficiency-select--highlighted) select {
+  outline: 2px solid var(--app-color-warning);
+  outline-offset: 0;
+}

@@ -1,0 +1,71 @@
+<div class="scroll" tabindex="0" role="region" [attr.aria-label]="label() + ' (scrollable)'">
+  <table [style.min-width]="minWidth()" [attr.aria-label]="label()">
+    <colgroup>
+      <col class="first" />
+      @for (column of columns(); track column.key) {
+        <col />
+      }
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col" class="first corner">
+          @if (corner(); as corner) {
+            <ng-container [ngTemplateOutlet]="corner.template" />
+          }
+        </th>
+        @for (column of columns(); track column.key) {
+          <th scope="col" [class.highlighted]="column.key === highlightColumn()">
+            @if (header(); as header) {
+              <ng-container [ngTemplateOutlet]="header.template" [ngTemplateOutletContext]="{ $implicit: column }" />
+            } @else {
+              {{ column.header }}
+            }
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows(); track rowKey()(row)) {
+        <tr [class.selected]="isRowSelected()(row)">
+          <th scope="row" class="first">
+            @if (rowHeader(); as rowHeader) {
+              <ng-container [ngTemplateOutlet]="rowHeader.template" [ngTemplateOutletContext]="{ $implicit: row }" />
+            }
+          </th>
+          @for (column of columns(); track column.key) {
+            <td [class.highlighted]="column.key === highlightColumn()">
+              @if (cell(); as cell) {
+                <ng-container
+                  [ngTemplateOutlet]="cell.template"
+                  [ngTemplateOutletContext]="{ $implicit: row, column: column }"
+                />
+              }
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+    @if (hasFooter()) {
+      <tfoot>
+        <tr>
+          <th scope="row" class="first corner">
+            @if (footerLabel(); as footerLabel) {
+              <ng-container [ngTemplateOutlet]="footerLabel.template" />
+            }
+          </th>
+          @for (column of columns(); track column.key) {
+            <td [class.highlighted]="column.key === highlightColumn()">
+              @if (footerCell(); as footerCell) {
+                <ng-container
+                  [ngTemplateOutlet]="footerCell.template"
+                  [ngTemplateOutletContext]="{ $implicit: column }"
+                />
+              }
+            </td>
+          }
+        </tr>
+      </tfoot>
+    }
+  </table>
+  <ng-content />
+</div>

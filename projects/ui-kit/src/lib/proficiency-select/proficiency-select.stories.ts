@@ -21,3 +21,20 @@ export const Default: Story = {
 };
 
 export const Disabled: Story = { args: { disabled: true } };
+
+export const Cell: Story = { args: { appearance: 'cell' } };
+
+export const CellHighlighted: Story = { args: { appearance: 'cell', highlighted: true } };
+
+export const CellLevels: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="display: grid; gap: 8px; width: 160px">
+        <app-proficiency-select appearance="cell" label="Not assessed level" value="NOT_ASSESSED" />
+        <app-proficiency-select appearance="cell" label="Beginner level" value="BEGINNER" />
+        <app-proficiency-select appearance="cell" label="Intermediate level" value="INTERMEDIATE" />
+        <app-proficiency-select appearance="cell" label="Expert level" value="EXPERT" />
+      </div>`,
+  }),
+};

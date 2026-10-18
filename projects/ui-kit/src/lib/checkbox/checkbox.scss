@@ -1,0 +1,20 @@
+:host {
+  display: inline-flex;
+}
+
+input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--app-color-primary);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

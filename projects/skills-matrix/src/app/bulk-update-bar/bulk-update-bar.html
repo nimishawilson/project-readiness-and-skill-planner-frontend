@@ -1,0 +1,42 @@
+<span class="count" aria-hidden="true">{{ count() }}</span>
+<div class="summary" aria-live="polite">
+  @if (count() === 0) {
+    <strong>No one selected</strong>
+    <span>Tick team members (or select all) to update one skill for everyone at once.</span>
+  } @else {
+    <strong>{{ count() }} selected{{ skillName() ? ' · ' + skillName() : '' }}</strong>
+    <span>
+      @if (skillName()) {
+        Highlighted cells will be set to {{ levelLabel() }}.
+      } @else {
+        Choose a skill to update.
+      }
+    </span>
+  }
+</div>
+
+<app-form-field label="Skill">
+  <select (change)="onSkill($event)">
+    <option value="" [selected]="skillId() === undefined">Choose a skill</option>
+    @for (skill of skills(); track skill.id) {
+      <option [value]="skill.id" [selected]="skill.id === skillId()">{{ skill.name }}</option>
+    }
+  </select>
+</app-form-field>
+
+<app-form-field label="Set proficiency to">
+  <select (change)="onLevel($event)">
+    @for (option of levels; track option.value) {
+      <option [value]="option.value" [selected]="option.value === level()">{{ option.label }}</option>
+    }
+  </select>
+</app-form-field>
+
+<div class="actions">
+  @if (count() > 0) {
+    <button app-button variant="ghost" type="button" (click)="clear.emit()">Clear</button>
+  }
+  <button app-button type="button" [disabled]="!canApply()" (click)="apply.emit()">
+    {{ count() > 0 ? 'Apply to ' + count() : 'Apply' }}
+  </button>
+</div>

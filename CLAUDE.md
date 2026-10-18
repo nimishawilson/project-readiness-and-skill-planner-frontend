@@ -4,7 +4,7 @@ Angular 22 micro-frontend workspace (Native Federation, esbuild). Backend and fu
 
 ## State
 
-`projects/shell` (dynamic host) plus four remotes: `employee-directory` (4201), `skills-matrix` (4202), `learning-goals` (4203), `project-management` (4204). Each remote exposes `./routes`; `employee-directory` has its static-data UI (mock data in `employee.mock.ts`, no API yet) and the other three still render placeholder pages; the shell registers them in `public/federation.manifest.json` and lazy-loads them in `app.routes.ts`. The shell has the top nav (`layout/nav`); no auth yet. See README.md.
+`projects/shell` (dynamic host) plus four remotes: `employee-directory` (4201), `skills-matrix` (4202), `learning-goals` (4203), `project-management` (4204). Each remote exposes `./routes`; `employee-directory` (mock data in `employee.mock.ts`) and `skills-matrix` (mock data in `skill-matrix.mock.ts`, built on `app-data-grid`) have static-data UIs with no API yet, and the other two still render placeholder pages; the shell registers them in `public/federation.manifest.json` and lazy-loads them in `app.routes.ts`. The shell has the top nav (`layout/nav`); no auth yet. See README.md.
 
 Shared UI library: `projects/ui-kit` (alias `@app/ui-kit`, prefix `app`; the built components and the plan for the rest are in `docs/reusable-components.md`). The alias maps to source in `tsconfig.json` `paths`, so Native Federation shares it as a singleton automatically; build alone with `npm run build:ui-kit`.
 

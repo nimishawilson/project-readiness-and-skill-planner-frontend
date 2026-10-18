@@ -1,0 +1,105 @@
+// Sticky edges (header, footer, first column) are set on the individual cells: that works across
+// browsers with `border-collapse: separate`. Every sticky cell needs an opaque background.
+:host {
+  --app-grid-bg: white;
+  --app-grid-head-bg: color-mix(in srgb, var(--app-color-ink) 3%, var(--app-color-surface));
+  --app-grid-highlight: color-mix(in srgb, var(--app-color-warning) 8%, white);
+
+  display: block;
+  min-width: 0;
+  min-height: 0;
+}
+
+.scroll {
+  max-height: var(--app-grid-max-height, none);
+  overflow: auto;
+  overscroll-behavior: contain;
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+    outline-offset: -2px;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+col.first {
+  width: var(--app-grid-first-width);
+}
+
+th,
+td {
+  padding: 8px 8px;
+  background: var(--app-grid-bg);
+  border-bottom: 1px solid var(--app-color-border);
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 14px 8px;
+  background: var(--app-grid-head-bg);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+tfoot th,
+tfoot td {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  border-top: 1px solid var(--app-color-border);
+  border-bottom: 0;
+  background: var(--app-grid-head-bg);
+}
+
+// These must out-rank `thead th` and `tfoot th` above (Angular's attribute selectors count too),
+// or the heading cells (z-index 2) paint over the pinned corner while scrolling sideways.
+thead th.first,
+tbody th.first,
+tfoot th.first {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  padding-left: 16px;
+  border-right: 1px solid var(--app-color-border);
+}
+
+// Corners sit above both the sticky row and the sticky column.
+thead th.corner,
+tfoot th.corner {
+  z-index: 3;
+}
+
+tbody tr.selected {
+  th.first {
+    box-shadow: inset 3px 0 0 var(--app-color-primary);
+  }
+
+  th,
+  td {
+    background: color-mix(in srgb, var(--app-color-primary) 6%, white);
+  }
+}
+
+.highlighted {
+  background: var(--app-grid-highlight);
+}
+
+thead th.highlighted {
+  box-shadow: inset 0 3px 0 var(--app-color-warning);
+  color: color-mix(in srgb, var(--app-color-warning) 55%, var(--app-color-ink));
+}
+
+tbody tr.selected td.highlighted {
+  background: color-mix(in srgb, var(--app-color-warning) 10%, white);
+}

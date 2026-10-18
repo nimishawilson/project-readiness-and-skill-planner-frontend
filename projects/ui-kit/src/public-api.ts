@@ -18,3 +18,7 @@ export * from './lib/proficiency-select/proficiency.utils';
 export * from './lib/proficiency-meter/proficiency-meter';
 export * from './lib/form-field/form-field';
 export * from './lib/goal-card/goal-card';
+export * from './lib/checkbox/checkbox';
+export * from './lib/legend/legend';
+export * from './lib/coverage-bar/coverage-bar';
+export * from './lib/data-grid/data-grid';

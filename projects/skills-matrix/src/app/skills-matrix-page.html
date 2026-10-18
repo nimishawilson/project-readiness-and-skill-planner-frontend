@@ -1,0 +1,46 @@
+<app-page-header
+  heading="Skill matrix"
+  [subtitle]="'Proficiency of your ' + employees().length + ' direct reports across ' + skills().length + ' skills. Change any cell, or update a whole skill for several people at once.'"
+>
+  <app-legend actions [items]="legend" />
+</app-page-header>
+
+<app-bulk-update-bar
+  [count]="selectedIds().size"
+  [skills]="skills()"
+  [canApply]="canApply()"
+  [(skillId)]="targetSkillId"
+  [(level)]="targetLevel"
+  (apply)="apply()"
+  (clear)="clear()"
+/>
+
+<section class="card">
+  <div class="toolbar">
+    <app-search-input class="search" label="Search my team" placeholder="Search my team" [(value)]="query" />
+    <p class="info">
+      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 11v5M12 8h.01" stroke-linecap="round" />
+      </svg>
+      Only your direct reports are listed. Click a skill heading to target it for bulk update.
+    </p>
+  </div>
+
+  @if (filtered().length) {
+    <app-matrix-grid
+      maxHeight="clamp(320px, calc(100vh - 420px), 760px)"
+      [employees]="filtered()"
+      [team]="employees()"
+      [skills]="skills()"
+      [selectedIds]="selectedIds()"
+      [targetSkillId]="targetSkillId()"
+      (rowToggle)="toggleRow($event.employeeId, $event.selected)"
+      (toggleAll)="toggleAll($event)"
+      (skillTarget)="targetSkill($event)"
+      (levelChange)="setLevel($event)"
+    />
+  } @else {
+    <app-empty-state heading="No one matches" message="No team members match your search." />
+  }
+</section>

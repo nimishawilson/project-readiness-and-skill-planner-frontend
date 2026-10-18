@@ -1,0 +1,64 @@
+<app-data-grid
+  label="Team skill matrix"
+  firstColumnWidth="280px"
+  columnMinWidth="140px"
+  [columns]="columns()"
+  [rows]="employees()"
+  [rowKey]="rowKey"
+  [maxHeight]="maxHeight()"
+  [highlightColumn]="highlightKey()"
+  [isRowSelected]="isSelected"
+>
+  <ng-template appGridCorner>
+    <div class="corner">
+      <app-checkbox
+        label="Select all team members"
+        [checked]="allSelected()"
+        [indeterminate]="someSelected()"
+        (checkedChange)="toggleAll.emit($event)"
+      />
+      <span class="eyebrow">Employee</span>
+    </div>
+  </ng-template>
+
+  <ng-template appGridHeader let-column>
+    <button
+      type="button"
+      class="skill-heading"
+      [attr.aria-pressed]="column.key === highlightKey()"
+      [attr.title]="'Target ' + column.header + ' for bulk update'"
+      (click)="skillTarget.emit(+column.key)"
+    >
+      {{ column.header }}
+    </button>
+  </ng-template>
+
+  <ng-template appGridRowHeader let-employee>
+    <div class="person">
+      <app-checkbox
+        [label]="'Select ' + employee.name"
+        [checked]="isSelected(employee)"
+        (checkedChange)="rowToggle.emit({ employeeId: employee.id, selected: $event })"
+      />
+      <app-employee-cell size="sm" [name]="employee.name" [title]="employee.title" />
+    </div>
+  </ng-template>
+
+  <ng-template appGridCell let-employee let-column="column">
+    <app-proficiency-select
+      appearance="cell"
+      [label]="employee.name + ' ' + column.header + ' level'"
+      [value]="levelOf(employee, +column.key)"
+      [highlighted]="isTargeted(employee, column)"
+      (valueChange)="levelChange.emit({ employeeId: employee.id, skillId: +column.key, level: $event })"
+    />
+  </ng-template>
+
+  <ng-template appGridFooterLabel><span class="eyebrow">Team coverage</span></ng-template>
+
+  <ng-template appGridFooterCell let-column>
+    @if (coverage().get(column.key); as c) {
+      <app-coverage-bar [expert]="c.expert" [intermediate]="c.intermediate" [beginner]="c.beginner" [total]="team().length" />
+    }
+  </ng-template>
+</app-data-grid>
