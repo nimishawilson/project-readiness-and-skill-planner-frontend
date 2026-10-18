@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 export type BadgeVariant = 'success' | 'warning' | 'neutral';
-export type BadgeEmphasis = 'soft' | 'solid';
+export type BadgeEmphasis = 'soft' | 'solid' | 'outline';
 
 /**
  * Small pill for a short status or label. The text (and an optional leading icon,

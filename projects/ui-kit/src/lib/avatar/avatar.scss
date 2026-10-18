@@ -37,3 +37,8 @@
   background: var(--app-color-accent);
   color: var(--app-color-ink);
 }
+
+:host(.app-avatar--primary) {
+  background: var(--app-color-primary);
+  color: var(--app-color-on-primary);
+}

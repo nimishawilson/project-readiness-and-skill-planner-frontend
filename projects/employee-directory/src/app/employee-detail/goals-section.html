@@ -1,0 +1,40 @@
+<app-detail-section heading="Learning goals">
+  @if (awaiting() > 0) {
+    <span meta class="awaiting"><span class="dot" aria-hidden="true"></span>{{ awaiting() }} awaiting approval</span>
+  }
+
+  <ul>
+    @for (goal of items(); track goal.id) {
+      <li>
+        <app-goal-card
+          [title]="goal.title"
+          [targetDate]="goal.targetDate"
+          [completedDate]="goal.completedDate"
+          [progress]="goal.progress"
+          [approved]="goal.approved"
+          [canApprove]="canEdit()"
+          (approve)="approve(goal.id)"
+          (sendBack)="sendBack(goal.id)"
+        />
+      </li>
+    } @empty {
+      <li class="empty">No learning goals this year.</li>
+    }
+  </ul>
+
+  @if (canEdit()) {
+    @if (atLimit()) {
+      <p class="limit">Maximum of {{ maxGoals }} learning goals reached for this year.</p>
+    } @else {
+      <form (submit)="$event.preventDefault(); add()">
+        <app-form-field label="Add a learning goal">
+          <input type="text" placeholder="e.g. Complete AWS Solutions Architect" [value]="title()" (input)="title.set($any($event.target).value)" />
+        </app-form-field>
+        <app-form-field label="Target date">
+          <input type="date" [value]="target()" (input)="target.set($any($event.target).value)" />
+        </app-form-field>
+        <button app-button type="submit" variant="primary" [disabled]="!canAdd()">+ Add goal</button>
+      </form>
+    }
+  }
+</app-detail-section>

@@ -46,3 +46,19 @@
   background: var(--app-color-ink);
   color: var(--app-color-surface);
 }
+
+// outline
+:host(.app-badge--success.app-badge--outline) {
+  border-color: var(--app-color-primary);
+  color: var(--app-color-primary);
+}
+
+:host(.app-badge--warning.app-badge--outline) {
+  border-color: var(--app-color-warning);
+  color: color-mix(in srgb, var(--app-color-warning) 55%, var(--app-color-ink));
+}
+
+:host(.app-badge--neutral.app-badge--outline) {
+  border-color: var(--app-color-text-muted);
+  color: var(--app-color-text-muted);
+}

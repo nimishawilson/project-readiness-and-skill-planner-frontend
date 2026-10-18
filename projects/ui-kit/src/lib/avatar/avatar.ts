@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { initialsFrom } from './avatar.utils';
 
 export type AvatarSize = 'sm' | 'md' | 'lg';
-export type AvatarTone = 'soft' | 'solid';
+export type AvatarTone = 'soft' | 'solid' | 'primary';
 
 /**
  * Circle showing a person's initials, derived from their full name.
@@ -25,7 +25,7 @@ export class Avatar {
   readonly name = input.required<string>();
   /** Diameter: `sm` 24px, `md` 32px, `lg` 48px. */
   readonly size = input<AvatarSize>('md');
-  /** `soft` is a tinted fill for light surfaces; `solid` is a stronger fill for dark surfaces. */
+  /** `soft` is a tinted fill for light surfaces; `solid` is a stronger fill for dark surfaces; `primary` is the brand fill with light text. */
   readonly tone = input<AvatarTone>('soft');
   /** Hide from assistive technology (the name is shown as text nearby). */
   readonly decorative = input(false);

@@ -1,0 +1,21 @@
+<app-page-header
+  heading="Employees"
+  subtitle="Review skills and learning goals. You can edit people on your team; everyone else is view only."
+>
+  <app-stat-card actions [value]="teamCount()" label="on my team" variant="primary" />
+  <app-stat-card actions [value]="awaitingCount()" label="goals awaiting approval" variant="warning" />
+</app-page-header>
+
+<app-master-detail masterHeight="clamp(420px, calc(100vh - 220px), 760px)">
+  <app-employee-list
+    master
+    [employees]="filtered()"
+    [total]="total()"
+    [departments]="departments()"
+    [selectedId]="selectedId()"
+    [(query)]="query"
+    [(department)]="department"
+    (selected)="selectedId.set($event)"
+  />
+  <app-employee-detail detail [employee]="selected()" (closed)="selectedId.set(undefined)" />
+</app-master-detail>

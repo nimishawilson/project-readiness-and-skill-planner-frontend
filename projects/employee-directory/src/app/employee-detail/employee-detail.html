@@ -1,0 +1,37 @@
+@let e = employee();
+@if (e) {
+  <header>
+    <app-avatar [name]="e.name" size="lg" tone="primary" [decorative]="true" />
+    <div class="who">
+      <h2>{{ e.name }}</h2>
+      <p>{{ e.title }}</p>
+      <div class="badges">
+        <app-badge variant="neutral">{{ e.department }}</app-badge>
+        @if (e.isMyTeam) {
+          <app-badge variant="success" emphasis="outline">My team · Can edit</app-badge>
+        } @else {
+          <app-badge variant="neutral">View only</app-badge>
+        }
+      </div>
+    </div>
+    <button app-button variant="ghost" [iconOnly]="true" type="button" aria-label="Close details" (click)="closed.emit()">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </button>
+  </header>
+
+  <app-detail-section heading="Profile"><app-profile-grid [employee]="e" /></app-detail-section>
+  <app-skills-section [skills]="e.skills" [canEdit]="e.isMyTeam" />
+  <app-goals-section [goals]="e.goals" [canEdit]="e.isMyTeam" />
+} @else {
+  <app-empty-state
+    heading="Select an employee"
+    message="Click any row in the list to see their profile, skills and learning goals here."
+    [skeleton]="true"
+  >
+    <svg icon width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+      <path d="m5 3 14 8-6 2-2 6z" />
+    </svg>
+  </app-empty-state>
+}

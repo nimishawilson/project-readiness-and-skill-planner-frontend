@@ -9,7 +9,7 @@ const meta: Meta<Badge> = {
   args: { variant: 'neutral', emphasis: 'soft' },
   argTypes: {
     variant: { control: 'select', options: ['success', 'warning', 'neutral'] },
-    emphasis: { control: 'select', options: ['soft', 'solid'] },
+    emphasis: { control: 'select', options: ['soft', 'solid', 'outline'] },
   },
   render: (args) => ({
     props: args,
@@ -32,6 +32,7 @@ export const Default: Story = {
 export const Success: Story = { render: () => badge('Ready to start', 'success') };
 export const Warning: Story = { render: () => badge('Not ready to start', 'warning') };
 export const Neutral: Story = { render: () => badge('2026', 'neutral') };
+export const OutlineSuccess: Story = { render: () => badge('My team', 'success', 'outline') };
 export const SolidWarning: Story = { render: () => badge('+1 needed', 'warning', 'solid') };
 export const SolidSuccess: Story = { render: () => badge('Approved', 'success', 'solid') };
 

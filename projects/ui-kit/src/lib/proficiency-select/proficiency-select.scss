@@ -1,0 +1,25 @@
+:host {
+  display: inline-block;
+}
+
+select {
+  width: 100%;
+  height: 36px;
+  padding: 0 28px 0 12px;
+  border: 1px solid var(--app-color-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--app-color-ink);
+  font: inherit;
+  font-size: 14px;
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+    outline-offset: 1px;
+  }
+
+  &:disabled {
+    background: var(--app-color-border);
+    color: var(--app-color-text-muted);
+  }
+}

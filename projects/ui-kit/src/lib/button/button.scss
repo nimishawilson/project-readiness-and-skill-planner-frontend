@@ -1,0 +1,69 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    border-color: transparent;
+    background: var(--app-color-border);
+    color: var(--app-color-text-muted);
+    cursor: not-allowed;
+  }
+}
+
+:host(.app-button--md) {
+  height: 36px;
+  padding: 0 16px;
+}
+
+:host(.app-button--sm) {
+  height: 32px;
+  padding: 0 12px;
+}
+
+:host(.app-button--icon) {
+  width: 32px;
+  padding: 0;
+}
+
+:host(.app-button--primary) {
+  background: var(--app-color-primary);
+  color: var(--app-color-on-primary);
+
+  &:hover:not(:disabled) {
+    background: var(--app-color-primary-hover);
+  }
+}
+
+:host(.app-button--outline) {
+  border-color: var(--app-color-border);
+  background: #fff;
+  color: var(--app-color-ink);
+
+  &:hover:not(:disabled) {
+    border-color: var(--app-color-primary);
+  }
+}
+
+:host(.app-button--ghost) {
+  background: transparent;
+  color: var(--app-color-text-muted);
+
+  &:hover:not(:disabled) {
+    background: var(--app-color-border);
+    color: var(--app-color-ink);
+  }
+}

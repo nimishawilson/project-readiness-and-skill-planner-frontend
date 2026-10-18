@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  padding: 12px 14px;
+  border: 1px solid var(--app-color-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--app-color-ink);
+}
+
+:host(.app-goal-card--attention) {
+  border-color: color-mix(in srgb, var(--app-color-warning) 60%, var(--app-color-surface));
+  background: color-mix(in srgb, var(--app-color-warning) 8%, var(--app-color-surface));
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.dates {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--app-color-text-muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}

@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--app-color-border);
+  border-left: 3px solid transparent;
+  color: var(--app-color-ink);
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, var(--app-color-ink) 4%, var(--app-color-surface));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+    outline-offset: -2px;
+  }
+}
+
+:host(.app-list-item--selected) {
+  border-left-color: var(--app-color-primary);
+  background: color-mix(in srgb, var(--app-color-accent) 30%, var(--app-color-surface));
+}

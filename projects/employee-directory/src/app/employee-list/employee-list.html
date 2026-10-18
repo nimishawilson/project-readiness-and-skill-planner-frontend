@@ -1,0 +1,40 @@
+<div class="filters">
+  <app-search-input label="Search employees" placeholder="Search by first or last name" [(value)]="query" />
+  <app-filter-chips label="Filter by department" [options]="departments()" [(value)]="department" />
+</div>
+
+<div class="summary">
+  <span>Showing {{ employees().length }} of {{ total() }} employees</span>
+  <span class="legend"><span class="dot" aria-hidden="true"></span>Goals awaiting your approval</span>
+</div>
+
+<div class="rows">
+  <app-list-header [columns]="columns" [template]="template" />
+  @for (employee of employees(); track employee.id) {
+    <app-list-item
+      [template]="template"
+      [selected]="employee.id === selectedId()"
+      (activate)="selected.emit(employee.id)"
+    >
+      <app-employee-cell [name]="employee.name" [title]="employee.title">
+        <app-count-badge [count]="awaiting(employee)" label="goals awaiting approval" />
+      </app-employee-cell>
+      <span>{{ employee.department }}</span>
+      <span>
+        @if (employee.isMyTeam) {
+          <app-badge variant="success" emphasis="outline">My team</app-badge>
+        } @else {
+          <app-badge variant="neutral">
+            <svg aria-hidden="true" width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="7" width="10" height="7" rx="1.5" />
+              <path d="M5 7V5a3 3 0 0 1 6 0v2" />
+            </svg>
+            View only
+          </app-badge>
+        }
+      </span>
+    </app-list-item>
+  } @empty {
+    <p class="none">No employees match your search.</p>
+  }
+</div>

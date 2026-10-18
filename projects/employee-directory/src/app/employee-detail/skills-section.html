@@ -1,0 +1,52 @@
+<app-detail-section heading="Skills">
+  <span meta>{{ items().length }} mapped</span>
+
+  <ul>
+    @for (skill of items(); track skill.name) {
+      <li>
+        <div class="skill">
+          <span class="name">{{ skill.name }}</span>
+          <app-proficiency-meter [level]="skill.level" />
+        </div>
+        <app-proficiency-select
+          [label]="skill.name + ' level'"
+          [value]="skill.level"
+          [disabled]="!canEdit()"
+          (valueChange)="setLevel(skill.name, $event)"
+        />
+        @if (canEdit()) {
+          <button
+            app-button
+            variant="ghost"
+            [iconOnly]="true"
+            type="button"
+            [attr.aria-label]="'Remove ' + skill.name"
+            (click)="remove(skill.name)"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" />
+            </svg>
+          </button>
+        }
+      </li>
+    } @empty {
+      <li class="empty">No skills mapped yet.</li>
+    }
+  </ul>
+
+  @if (canEdit()) {
+    <form (submit)="$event.preventDefault(); add()">
+      <app-form-field label="Add a skill">
+        <input type="text" placeholder="e.g. Kubernetes" [value]="newName()" (input)="newName.set($any($event.target).value)" />
+      </app-form-field>
+      <app-form-field label="Level">
+        <select (change)="newLevel.set($any($event.target).value)">
+          @for (option of levelOptions; track option.value) {
+            <option [value]="option.value" [selected]="option.value === newLevel()">{{ option.label }}</option>
+          }
+        </select>
+      </app-form-field>
+      <button app-button type="submit" variant="primary" [disabled]="!canAdd()">+ Add skill</button>
+    </form>
+  }
+</app-detail-section>

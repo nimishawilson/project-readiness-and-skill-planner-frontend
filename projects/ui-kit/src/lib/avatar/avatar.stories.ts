@@ -9,7 +9,7 @@ const meta: Meta<Avatar> = {
   args: { name: 'Arjun Mehta', size: 'md', tone: 'soft', decorative: false },
   argTypes: {
     size: { control: 'select', options: ['sm', 'md', 'lg'] },
-    tone: { control: 'select', options: ['soft', 'solid'] },
+    tone: { control: 'select', options: ['soft', 'solid', 'primary'] },
   },
 };
 export default meta;
@@ -45,6 +45,8 @@ export const Solid: Story = {
       </div>`,
   }),
 };
+
+export const Primary: Story = { args: { tone: 'primary', size: 'lg' } };
 
 export const SingleName: Story = { args: { name: 'Madonna' } };
 
