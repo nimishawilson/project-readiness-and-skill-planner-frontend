@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 /**
- * Label above a projected `<input>` or `<select>`, with optional hint or error text.
+ * Label above a projected `<input>`, `<select>` or `<textarea>`, with optional hint or error text.
  * The label wraps the control so clicking it focuses the control.
  */
 @Component({

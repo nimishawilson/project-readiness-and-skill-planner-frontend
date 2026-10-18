@@ -1,0 +1,15 @@
+:host {
+  display: inline-flex;
+  gap: 3px;
+}
+
+span {
+  width: 14px;
+  height: 5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--app-color-ink) 12%, #fff);
+
+  &.on {
+    background: var(--app-color-primary);
+  }
+}

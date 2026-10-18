@@ -19,14 +19,13 @@ export class GoalsSection {
 
   protected readonly items = linkedSignal(() => this.goals());
   protected readonly title = signal('');
-  protected readonly target = signal('');
   protected readonly maxGoals = MAX_GOALS;
 
   protected readonly awaiting = computed(
     () => this.items().filter((g) => g.progress === 'COMPLETED' && !g.approved).length,
   );
   protected readonly atLimit = computed(() => this.items().length >= MAX_GOALS);
-  protected readonly canAdd = computed(() => this.title().trim().length > 0 && this.target().length > 0);
+  protected readonly canAdd = computed(() => this.title().trim().length > 0);
 
   protected approve(id: number): void {
     this.items.update((list) => list.map((g) => (g.id === id ? { ...g, approved: true } : g)));
@@ -34,7 +33,7 @@ export class GoalsSection {
 
   protected sendBack(id: number): void {
     this.items.update((list) =>
-      list.map((g) => (g.id === id ? { ...g, progress: 'IN_PROGRESS', completedDate: undefined } : g)),
+      list.map((g) => (g.id === id ? { ...g, progress: 'IN_PROGRESS' } : g)),
     );
   }
 
@@ -44,9 +43,8 @@ export class GoalsSection {
     const id = Math.max(0, ...this.items().map((g) => g.id)) + 1;
     this.items.update((list) => [
       ...list,
-      { id, title, targetDate: this.target(), progress: 'NOT_STARTED', approved: false },
+      { id, title, assignedDate: new Date().toISOString().slice(0, 10), progress: 'NOT_STARTED', approved: false },
     ]);
     this.title.set('');
-    this.target.set('');
   }
 }

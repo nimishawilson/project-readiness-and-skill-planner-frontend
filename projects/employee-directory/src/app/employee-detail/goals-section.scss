@@ -32,7 +32,7 @@ ul {
 
 form {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 160px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   margin-top: 12px;
   padding: 12px;

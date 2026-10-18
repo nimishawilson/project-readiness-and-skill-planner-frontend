@@ -8,9 +8,8 @@ export interface EmployeeSkill {
 export interface EmployeeGoal {
   id: number;
   title: string;
-  /** ISO date. */
-  targetDate: string;
-  completedDate?: string;
+  /** ISO date the goal was assigned. */
+  assignedDate: string;
   progress: GoalProgress;
   approved: boolean;
 }

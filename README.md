@@ -1,6 +1,6 @@
 # Project Readiness & Skill Planner — Frontend
 
-Angular micro-frontend workspace using [Native Federation](https://www.npmjs.com/package/@angular-architects/native-federation). The `shell` host and four remotes exist; the remotes only contain placeholder pages so far.
+Angular micro-frontend workspace using [Native Federation](https://www.npmjs.com/package/@angular-architects/native-federation). The `shell` host and four remotes exist; employee-directory, skills-matrix and learning-goals have static-data UIs, and project-management is still a placeholder.
 
 ## Commands
 

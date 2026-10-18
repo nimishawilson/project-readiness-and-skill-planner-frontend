@@ -1,0 +1,51 @@
+:host {
+  display: inline-flex;
+  border: 1px solid var(--app-color-border);
+  border-radius: 999px;
+  background: #fff;
+  overflow: hidden;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 14px;
+  border: 0;
+  border-left: 1px solid var(--app-color-border);
+  background: transparent;
+  color: var(--app-color-ink);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:first-child {
+    border-left: 0;
+  }
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--app-color-accent) 15%, #fff);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--app-color-primary);
+    outline-offset: -2px;
+  }
+
+  &[aria-checked='true'] {
+    background: color-mix(in srgb, var(--app-color-accent) 35%, #fff);
+    color: var(--app-color-primary);
+  }
+
+  &:disabled {
+    cursor: default;
+    color: var(--app-color-text-muted);
+  }
+
+  &[aria-checked='true']:disabled {
+    background: color-mix(in srgb, var(--app-color-accent) 20%, #fff);
+  }
+}

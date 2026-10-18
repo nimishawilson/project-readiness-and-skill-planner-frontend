@@ -1,0 +1,33 @@
+<h3>Assign a new goal</h3>
+
+@if (!yearOpen()) {
+  <app-callout>
+    <svg icon width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M12 8v5M12 16.5v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+    {{ year() }} has ended. Past goals can be reviewed, but new goals can only be assigned for the current or next year.
+  </app-callout>
+} @else if (slots() === 0) {
+  <app-callout>
+    <svg icon width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M12 8v5M12 16.5v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+    <strong>Yearly limit reached.</strong> {{ firstName() }} already has {{ maxGoals }} goals for {{ year() }}. Remove a
+    goal that hasn't started to assign a different one.
+  </app-callout>
+} @else {
+  <form (submit)="$event.preventDefault(); submit()">
+    <app-form-field label="Goal title" [error]="titleError()">
+      <input type="text" placeholder="e.g. Complete Angular Signals course" [value]="title()" (input)="title.set($any($event.target).value)" />
+    </app-form-field>
+    <app-form-field label="Description (optional)" [error]="descriptionError()">
+      <textarea rows="3" placeholder="What does done look like?" [value]="description()" (input)="description.set($any($event.target).value)"></textarea>
+    </app-form-field>
+    <div class="footer">
+      <span class="slots">{{ slots() }} {{ slots() === 1 ? 'slot' : 'slots' }} left for {{ year() }}</span>
+      <button app-button type="submit" variant="primary" [disabled]="!canSubmit()">+ Assign goal</button>
+    </div>
+  </form>
+}

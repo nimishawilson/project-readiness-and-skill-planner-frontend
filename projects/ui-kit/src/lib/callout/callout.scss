@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--app-color-ink);
+}
+
+:host(.app-callout--info) {
+  background: color-mix(in srgb, var(--app-color-ink) 6%, var(--app-color-surface));
+}
+
+:host(.app-callout--warning) {
+  border-color: color-mix(in srgb, var(--app-color-warning) 60%, var(--app-color-surface));
+  background: color-mix(in srgb, var(--app-color-warning) 8%, var(--app-color-surface));
+}
+
+.icon:empty {
+  display: none;
+}
+
+.icon {
+  flex: none;
+  display: inline-flex;
+  margin-top: 2px;
+}
+
+.body {
+  min-width: 0;
+  flex: 1;
+}

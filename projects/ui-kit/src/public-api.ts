@@ -22,3 +22,6 @@ export * from './lib/checkbox/checkbox';
 export * from './lib/legend/legend';
 export * from './lib/coverage-bar/coverage-bar';
 export * from './lib/data-grid/data-grid';
+export * from './lib/segmented-control/segmented-control';
+export * from './lib/progress-dots/progress-dots';
+export * from './lib/callout/callout';

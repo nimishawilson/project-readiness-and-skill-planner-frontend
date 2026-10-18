@@ -26,12 +26,11 @@ export const EMPLOYEES: Employee[] = [
       {
         id: 1,
         title: 'Complete Kubernetes for Developers (CKAD prep)',
-        targetDate: '2026-10-31',
-        completedDate: '2026-10-09',
+        assignedDate: '2026-02-10',
         progress: 'COMPLETED',
         approved: false,
       },
-      { id: 2, title: 'Lead one architecture review per quarter', targetDate: '2026-12-15', progress: 'IN_PROGRESS', approved: false },
+      { id: 2, title: 'Lead one architecture review per quarter', assignedDate: '2026-02-10', progress: 'IN_PROGRESS', approved: false },
     ],
   },
   {
@@ -69,8 +68,8 @@ export const EMPLOYEES: Employee[] = [
       { name: 'Accessibility', level: 'INTERMEDIATE' },
     ],
     goals: [
-      { id: 3, title: 'Get Angular certified', targetDate: '2026-09-30', completedDate: '2026-09-20', progress: 'COMPLETED', approved: false },
-      { id: 4, title: 'Run an accessibility audit', targetDate: '2026-11-15', completedDate: '2026-10-12', progress: 'COMPLETED', approved: false },
+      { id: 3, title: 'Get Angular certified', assignedDate: '2026-03-02', progress: 'COMPLETED', approved: false },
+      { id: 4, title: 'Run an accessibility audit', assignedDate: '2026-04-01', progress: 'COMPLETED', approved: false },
     ],
   },
   {

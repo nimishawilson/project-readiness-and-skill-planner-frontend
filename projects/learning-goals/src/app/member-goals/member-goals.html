@@ -1,0 +1,48 @@
+@if (member(); as member) {
+  <header>
+    <app-avatar [name]="member.name" size="lg" tone="primary" />
+    <div class="who">
+      <h2>{{ member.name }}</h2>
+      <p>{{ member.title }}</p>
+    </div>
+    <div class="count">
+      <span>{{ year() }} goals</span>
+      <span class="dots">
+        <app-progress-dots [filled]="goals().length" [total]="maxGoals" [label]="goals().length + ' of ' + maxGoals + ' goals'" />
+        <strong>{{ goals().length }} / {{ maxGoals }}</strong>
+      </span>
+    </div>
+  </header>
+
+  <ul>
+    @for (goal of goals(); track goal.id) {
+      <li>
+        <app-goal-card
+          [title]="goal.title"
+          [description]="goal.description"
+          [assignedDate]="goal.createdAt"
+          [progress]="goal.progressStatus"
+          [approved]="goal.approvalStatus === 'APPROVED'"
+          [canApprove]="yearOpen()"
+          [showProgress]="true"
+          [canEditProgress]="yearOpen()"
+          (approve)="approve.emit(goal.id)"
+          (sendBack)="sendBack.emit(goal.id)"
+          (progressChange)="progressChange.emit({ goalId: goal.id, progress: $event })"
+        />
+      </li>
+    } @empty {
+      <li class="empty">No learning goals for {{ year() }} yet.</li>
+    }
+  </ul>
+
+  <app-assign-goal-form
+    [firstName]="firstName()"
+    [year]="year()"
+    [goalCount]="goals().length"
+    [yearOpen]="yearOpen()"
+    (assign)="assign.emit($event)"
+  />
+} @else {
+  <app-empty-state heading="Select a team member" message="Pick someone from your team to review and assign learning goals." [skeleton]="true" />
+}

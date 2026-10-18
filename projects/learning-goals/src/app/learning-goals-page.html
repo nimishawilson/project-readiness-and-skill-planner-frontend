@@ -1,0 +1,42 @@
+<app-page-header heading="Learning goals" subtitle="Assign up to 3 goals per person each year, track progress, and approve completed goals.">
+  <app-form-field actions label="Goal year">
+    <select [value]="year()" (change)="setYear($any($event.target).value)">
+      @for (option of years; track option) {
+        <option [value]="option" [selected]="option === year()">{{ option }}</option>
+      }
+    </select>
+  </app-form-field>
+</app-page-header>
+
+<div class="stats">
+  <app-stat-card [value]="summary().awaiting" label="Awaiting approval" variant="warning" />
+  <app-stat-card [value]="summary().inProgress" label="In progress" variant="accent" />
+  <app-stat-card [value]="summary().notStarted" label="Not started" variant="neutral" />
+  <app-stat-card [value]="summary().approved" label="Approved" variant="primary" />
+</div>
+
+@if (pending().length > 0) {
+  <app-approval-banner [items]="pending()" [canAct]="yearOpen()" (approve)="approve($event)" (sendBack)="sendBack($event)" />
+}
+
+<app-master-detail>
+  <app-team-list
+    master
+    [rows]="rows()"
+    [selectedId]="selectedId()"
+    [(query)]="query"
+    [(filter)]="filter"
+    (selected)="selectedId.set($event)"
+  />
+  <app-member-goals
+    detail
+    [member]="selected()"
+    [year]="year()"
+    [goals]="selectedGoals()"
+    [yearOpen]="yearOpen()"
+    (approve)="approve($event)"
+    (sendBack)="sendBack($event)"
+    (progressChange)="changeProgress($event)"
+    (assign)="assign($event)"
+  />
+</app-master-detail>

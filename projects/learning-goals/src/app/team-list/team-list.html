@@ -1,0 +1,22 @@
+<div class="filters">
+  <app-search-input label="Search my team" placeholder="Search my team" [(value)]="query" />
+  <app-filter-chips label="Filter team" [options]="filters" [(value)]="filter" />
+</div>
+
+<div class="rows">
+  @for (row of rows(); track row.member.id) {
+    <app-list-item [template]="template" [selected]="row.member.id === selectedId()" (activate)="selected.emit(row.member.id)">
+      <app-employee-cell [name]="row.member.name" [title]="row.member.title">
+        <app-count-badge [count]="row.pending" label="goals awaiting approval" />
+      </app-employee-cell>
+      <span class="slots">
+        <app-progress-dots [filled]="row.count" [total]="maxGoals" [label]="row.count + ' of ' + maxGoals + ' goals'" />
+        <span [class.limit]="row.count >= maxGoals">
+          {{ row.count >= maxGoals ? 'Limit reached' : row.count + ' of ' + maxGoals }}
+        </span>
+      </span>
+    </app-list-item>
+  } @empty {
+    <p class="none">No team members match your search.</p>
+  }
+</div>

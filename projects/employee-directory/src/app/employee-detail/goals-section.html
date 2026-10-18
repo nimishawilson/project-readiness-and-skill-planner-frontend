@@ -8,8 +8,7 @@
       <li>
         <app-goal-card
           [title]="goal.title"
-          [targetDate]="goal.targetDate"
-          [completedDate]="goal.completedDate"
+          [assignedDate]="goal.assignedDate"
           [progress]="goal.progress"
           [approved]="goal.approved"
           [canApprove]="canEdit()"
@@ -29,9 +28,6 @@
       <form (submit)="$event.preventDefault(); add()">
         <app-form-field label="Add a learning goal">
           <input type="text" placeholder="e.g. Complete AWS Solutions Architect" [value]="title()" (input)="title.set($any($event.target).value)" />
-        </app-form-field>
-        <app-form-field label="Target date">
-          <input type="date" [value]="target()" (input)="target.set($any($event.target).value)" />
         </app-form-field>
         <button app-button type="submit" variant="primary" [disabled]="!canAdd()">+ Add goal</button>
       </form>
